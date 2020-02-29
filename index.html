@@ -11,19 +11,36 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css" />
+ 
   </head>
   <body>
     <!--Login Area-->
+
+    
     <div id="login-area">
-      <h1 class="text-center">Welcome To Swiss Bank</h1>
+     
+       <marquee behavior="scroll" direction="right"> <h1 class="text-center">Welcome To Swiss Bank</h1></marquee>
 
       <div class="submit-area">
         <h4>Login</h4>
-        <input type="text" class="form-control" placeholder="email" />
+        <input
+          type="text"
+          id="email"
+          class="form-control"
+          placeholder="email"
+        />
+
         <br />
-        <input type="password" class="form-control" placeholder="password" />
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          placeholder="password"
+        />
         <br />
-        <button id="login" class="btn btn-success">Enter</button>
+        <button id="login" class="btn btn-success" onclick="validate()">
+          Enter
+        </button>
       </div>
     </div>
     <!--End of Login Area-->
@@ -77,6 +94,12 @@
           </div>
         </div>
       </div>
+
+      <div class="row">
+       
+          <button id="logout" class="btn btn-info" onclick="exit()">Logout</button>
+        </div>
+      </div>
     </div>
 
     <!--End of Transaction Area-->
@@ -91,6 +114,13 @@
         const transactionArea = document.getElementById("transaction-area");
         transactionArea.style.display = "block";
       });
+      function validate() {
+        const Email = document.getElementById("email").value;
+        const Password = document.getElementById("password").value;
+        if (Email == "" || Password == "") {
+          alert("Please fill out this field");
+        }
+      }
 
       //deposit button event handler
       const depositBtn = document.getElementById("addDeposit");
@@ -139,6 +169,26 @@
         const amountNumber = parseFloat(amount);
         return amountNumber;
       }
+
+      
+
+    //Event handler for logout button
+      function exit(){
+        const LogoutBtn = document.getElementById("logout");
+        
+        LogoutBtn.addEventListener("click", function(){
+          const loginArea = document.getElementById("login-area");
+          const transactionArea = document.getElementById("transaction-area");
+
+          transactionArea.style.display = "none";
+          loginArea.style.display = "block";
+        })
+      }
+
+   
     </script>
+
+
+   
   </body>
 </html>
